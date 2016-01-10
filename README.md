@@ -19,6 +19,7 @@ import travisgen
 @travisgen.builder$("python", ["2.7", "3.4"])
 def travismaker(version):
     ...
+    return install_cmds, script_cmds
 
 if __name__ == "__main__":
     travismaker()
