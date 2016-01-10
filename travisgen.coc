@@ -20,11 +20,17 @@ def generate(language, versions, builder, sudo=False, email=False, tab=2):
         install, script = builder(version)
         out += ("\n\n" + " "*(tab*2) + "- " + language + ': "'
             + version + '"\n\n'+ " "*(tab*3) + "install:")
-        for cmd in install:
-            out += "\n" + " "*(tab*4) + "- " + cmd
+        if install:
+            for cmd in install:
+                out += "\n" + " "*(tab*4) + "- " + cmd
+        else:
+            out += " " + jsonbool(True)
         out += "\n\n" + " "*(tab*3) + "script:"
-        for cmd in script:
-            out += "\n" + " "*(tab*4) + "- " + cmd
+        if script:
+            for cmd in script:
+                out += "\n" + " "*(tab*4) + "- " + cmd
+        else:
+            out += " " + jsonbool(True)
     out += "\n"
     return out
 
