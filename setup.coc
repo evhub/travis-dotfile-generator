@@ -1,0 +1,11 @@
+import setuptools
+
+setuptools.setup(
+    name = "travisgen",
+    version = "0.1-dev",
+    description = "Generate .travis.yml files from Python/Coconut scripts.",
+    url = "https://github.com/evhub/travis-dotfile-generator",
+    author = "Evan Hubinger",
+    author_email = "evanjhub@gmail.com",
+    packages = setuptools.find_packages()
+    )

@@ -1,0 +1,40 @@
+import functools
+import os.path
+
+def jsonbool(obj):
+    """Convert a boolean into proper JSON formatting."""
+    return "true" if obj else "false"
+
+def writefile(openedfile, newcontents):
+    """Sets the contents of a file."""
+    openedfile.seek(0)
+    openedfile.truncate()
+    openedfile.write(newcontents)
+
+def generate(language, versions, builder, sudo=False, email=False, tab=2):
+    """Generates a .travis.yml from the given arguments."""
+    out = ("language: " + language
+        + "\n\nsudo: " + jsonbool(sudo)
+        + "\n\nnotifications:\n" + " "*tab + "email: " + jsonbool(email)
+        + "\n\nmatrix:\n" + " "*tab + "include:")
+    for version in versions:
+        install, script = builder(version)
+        out += ("\n\n" + " "*(tab*2) + "- " + language + ': "'
+            + version + '"\n\n'+ " "*(tab*3) + "install:")
+        for cmd in install:
+            out += "\n" + " "*(tab*4) + "- " + cmd
+        out += "\n\n" + " "*(tab*3)
+        for cmd in script:
+            out += "\n" + " "*(tab*4) + "- " + cmd
+    out += "\n"
+    return out
+
+def build(directory, *args, **kwargs):
+    """Builds a .travis.yml in the given directory with the given arguments."""
+    travis_contents = generate(*args, **kwargs)
+    with open(os.path.join(directory, ".travis.yml"), "w") as travis_file:
+        writefile(travis_file, travis_contents)
+
+def builder(*args, **kwargs):
+    """Decorator around build."""
+    return () -> build(*args, **kwargs)
