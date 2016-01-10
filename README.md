@@ -17,6 +17,7 @@ pip install travis-dotfile-generator
 import travisgen
 
 @travisgen.builder$("python", ["2.7", "3.4"])
+#@functools.partial(travisgen.builder, "python", ["2.7", "3.4"])
 def travismaker(version):
     ...
     return install_cmds, script_cmds
