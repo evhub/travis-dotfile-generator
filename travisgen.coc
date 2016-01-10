@@ -22,7 +22,7 @@ def generate(language, versions, builder, sudo=False, email=False, tab=2):
             + version + '"\n\n'+ " "*(tab*3) + "install:")
         for cmd in install:
             out += "\n" + " "*(tab*4) + "- " + cmd
-        out += "\n\n" + " "*(tab*3)
+        out += "\n\n" + " "*(tab*3) + "script:"
         for cmd in script:
             out += "\n" + " "*(tab*4) + "- " + cmd
     out += "\n"
