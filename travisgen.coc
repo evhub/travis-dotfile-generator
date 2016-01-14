@@ -2,7 +2,7 @@ import os.path
 
 def jsonbool(obj):
     """Convert a boolean into proper JSON formatting."""
-    return "true" if obj else "false"
+    return str(obj).lower()
 
 def writefile(openedfile, newcontents):
     """Sets the contents of a file."""
