@@ -1,6 +1,6 @@
 # [Travis CI](https://travis-ci.org/) Dotfile Generator
 
-Generates `.travis.yml` files from Python/Coconut scripts, written in [Coconut](https://github.com/evhub/coconut).
+Generates `.travis.yml` files from Python/Coconut scripts. Travis Dotfile Generator is written in [Coconut](https://github.com/evhub/coconut).
 
 ## Installation
 
